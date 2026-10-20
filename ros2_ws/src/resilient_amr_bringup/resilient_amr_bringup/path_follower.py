@@ -9,6 +9,8 @@ from std_msgs.msg import String
 from std_srvs.srv import Trigger
 import json
 
+from resilient_amr.path_geometry import paths_are_equivalent
+
 
 class PathFollower(Node):
     def __init__(self):
@@ -24,6 +26,7 @@ class PathFollower(Node):
         self.cancel_requested = False
         self.cancel_when_accepted = False
         self.latest_path_key = None
+        self.active_path = None
         self.create_subscription(Path, "/resilient_amr/path", self.on_path, 10)
         self.create_service(Trigger, "/resilient_amr/cancel_navigation", self.cancel_navigation)
 
@@ -40,6 +43,7 @@ class PathFollower(Node):
             self.get_logger().error("Planner reported no path; cancelling active navigation")
             self.pending_path = None
             self.latest_path_key = None
+            self.active_path = None
             if self.active_goal is not None:
                 self._cancel_active_goal()
             elif self.goal_request_pending:
@@ -53,6 +57,11 @@ class PathFollower(Node):
             return
         self.latest_path_key = key
         if self.goal_request_pending or self.active_goal is not None:
+            reference = self.pending_path or self.active_path
+            if reference is not None and paths_are_equivalent(
+                    self._points(reference), self._points(path)):
+                self.get_logger().debug("Keeping active FollowPath goal; update only advances along the same route")
+                return
             self.pending_path = path
             self._cancel_active_goal()
             return
@@ -63,6 +72,10 @@ class PathFollower(Node):
         return tuple((round(p.pose.position.x, 3), round(p.pose.position.y, 3),
                       round(p.pose.orientation.z, 3), round(p.pose.orientation.w, 3))
                      for p in path.poses)
+
+    @staticmethod
+    def _points(path):
+        return [(p.pose.position.x, p.pose.position.y) for p in path.poses]
 
     def _cancel_active_goal(self):
         if self.active_goal is not None and not self.cancel_requested:
@@ -78,6 +91,7 @@ class PathFollower(Node):
         goal.path = path
         goal.controller_id = self.get_parameter("controller_id").value
         goal.goal_checker_id = self.get_parameter("goal_checker_id").value
+        self.active_path = path
         self.goal_request_pending = True
         future = self.client.send_goal_async(goal, feedback_callback=self.on_feedback)
         future.add_done_callback(self.on_goal_response)

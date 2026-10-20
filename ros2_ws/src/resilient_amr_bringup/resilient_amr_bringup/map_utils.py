@@ -37,13 +37,16 @@ def occupancy_to_grid(message, occupied_threshold=65, inflation_cells=0):
             row.append(value < 0 or value >= occupied_threshold)
         rows.append(tuple(row))
     if inflation_cells > 0:
-        occupied = {(x, y) for y, row in enumerate(rows) for x, blocked in enumerate(row) if blocked}
-        for x, y in occupied:
-            for dy in range(-inflation_cells, inflation_cells + 1):
-                for dx in range(-inflation_cells, inflation_cells + 1):
-                    nx, ny = x + dx, y + dy
-                    if 0 <= nx < width and 0 <= ny < height:
-                        rows[ny] = tuple(value or index == nx for index, value in enumerate(rows[ny]))
+        # Expand only from source rows. Blocked/unknown cells are already true,
+        # so this avoids a large per-cell inflation set for mostly-unknown maps.
+        source_rows = [tuple(x for x, blocked in enumerate(row) if blocked) for row in rows]
+        for y in range(height):
+            expanded = set()
+            for source_y in range(max(0, y - inflation_cells), min(height, y + inflation_cells + 1)):
+                for x in source_rows[source_y]:
+                    expanded.update(range(max(0, x - inflation_cells), min(width, x + inflation_cells + 1)))
+            if expanded:
+                rows[y] = tuple(value or x in expanded for x, value in enumerate(rows[y]))
     return Grid(tuple(rows))
 
 

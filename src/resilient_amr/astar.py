@@ -29,11 +29,16 @@ def octile_distance(a: Cell, b: Cell) -> float:
 class AStarPlanner:
     """Grid A* that treats confirmed remembered changes as occupied cells."""
 
-    def plan(self, grid: Grid, start: Cell, goal: Cell, remembered: set[Cell] | None = None) -> list[Cell]:
+    def plan(self, grid: Grid, start: Cell, goal: Cell, remembered: set[Cell] | None = None,
+             *, allow_blocked_start: bool = False,
+             escape_cells: set[Cell] | None = None) -> list[Cell]:
         remembered = remembered or set()
+        escape_cells = escape_cells or set()
         if not grid.contains(start) or not grid.contains(goal):
             raise ValueError("start and goal must be inside the grid")
-        if self._blocked(grid, start, remembered) or self._blocked(grid, goal, remembered):
+        if (grid.is_static_obstacle(start)
+                or (start in remembered and not allow_blocked_start)
+                or self._blocked(grid, goal, remembered, escape_cells)):
             return []
         if start == goal:
             return [start]
@@ -55,12 +60,13 @@ class AStarPlanner:
 
             for dx, dy, move_cost in NEIGHBORS:
                 neighbor = (current[0] + dx, current[1] + dy)
-                if self._blocked(grid, neighbor, remembered) or neighbor in closed:
+                if self._blocked(grid, neighbor, remembered, escape_cells) or neighbor in closed:
                     continue
                 if dx and dy:
                     side_a = (current[0] + dx, current[1])
                     side_b = (current[0], current[1] + dy)
-                    if self._blocked(grid, side_a, remembered) or self._blocked(grid, side_b, remembered):
+                    if (self._blocked(grid, side_a, remembered, escape_cells)
+                            or self._blocked(grid, side_b, remembered, escape_cells)):
                         continue
 
                 tentative = g_score[current] + move_cost
@@ -74,8 +80,10 @@ class AStarPlanner:
         return []
 
     @staticmethod
-    def _blocked(grid: Grid, cell: Cell, remembered: set[Cell]) -> bool:
-        return grid.is_static_obstacle(cell) or cell in remembered
+    def _blocked(grid: Grid, cell: Cell, remembered: set[Cell], escape_cells: set[Cell] | None = None) -> bool:
+        # Only the adapter may nominate cells in the dynamic LiDAR inflation halo.
+        # Static occupancy and confirmed memory are never bypassed.
+        return grid.is_static_obstacle(cell) or (cell in remembered and cell not in (escape_cells or set()))
 
     @staticmethod
     def _reconstruct(came_from: dict[Cell, Cell], current: Cell) -> list[Cell]:

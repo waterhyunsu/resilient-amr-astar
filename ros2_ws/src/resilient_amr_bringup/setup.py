@@ -18,7 +18,7 @@ setup(
     install_requires=["setuptools"],
     zip_safe=True,
     maintainer="RESILIENT-AMR project",
-    maintainer_email="maintainer@example.com",
+    maintainer_email="maintainer@example.invalid",
     description="TurtleBot3 ROS 2 simulation and persistent memory planning.",
     license="MIT",
     entry_points={

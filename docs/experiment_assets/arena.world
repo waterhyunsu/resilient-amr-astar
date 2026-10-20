@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="resilient_amr_experiment_arena">
+    <include><uri>model://ground_plane</uri></include>
+    <include><uri>model://sun</uri></include>
+    <scene><shadows>false</shadows></scene>
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+    <model name="arena_walls">
+      <static>true</static>
+      <link name="south">
+        <pose>0 -4.9 0.5 0 0 0</pose>
+        <collision name="collision"><geometry><box><size>10 0.2 1</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>10 0.2 1</size></box></geometry></visual>
+      </link>
+      <link name="north">
+        <pose>0 4.9 0.5 0 0 0</pose>
+        <collision name="collision"><geometry><box><size>10 0.2 1</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>10 0.2 1</size></box></geometry></visual>
+      </link>
+      <link name="west">
+        <pose>-4.9 0 0.5 0 0 0</pose>
+        <collision name="collision"><geometry><box><size>0.2 10 1</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.2 10 1</size></box></geometry></visual>
+      </link>
+      <link name="east">
+        <pose>4.9 0 0.5 0 0 0</pose>
+        <collision name="collision"><geometry><box><size>0.2 10 1</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.2 10 1</size></box></geometry></visual>
+      </link>
+    </model>
+  </world>
+</sdf>

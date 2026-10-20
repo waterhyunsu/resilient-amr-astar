@@ -1,0 +1,569 @@
+[INFO] [launch]: All log files can be found below /home/<user>/.ros/log/2026-10-20-23-48-33-181813-DESKTOP-PLNRQH9-281103
+[INFO] [launch]: Default logging verbosity is set to INFO
+urdf_file_name : turtlebot3_waffle.urdf
+urdf_file_name : turtlebot3_waffle.urdf
+[INFO] [gzserver-1]: process started with pid [281142]
+[INFO] [robot_state_publisher-2]: process started with pid [281144]
+[INFO] [spawn_entity.py-3]: process started with pid [281146]
+[INFO] [component_container_isolated-4]: process started with pid [281148]
+[INFO] [change_memory-5]: process started with pid [281150]
+[INFO] [astar_planner-6]: process started with pid [281152]
+[INFO] [path_follower-7]: process started with pid [281154]
+[INFO] [task_manager-8]: process started with pid [281161]
+[INFO] [experiment_logger-9]: process started with pid [281176]
+[robot_state_publisher-2] [INFO] [1792507714.692579732] [robot_state_publisher]: got segment base_footprint
+[robot_state_publisher-2] [INFO] [1792507714.692705332] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-2] [INFO] [1792507714.692715432] [robot_state_publisher]: got segment base_scan
+[robot_state_publisher-2] [INFO] [1792507714.692720432] [robot_state_publisher]: got segment camera_depth_frame
+[robot_state_publisher-2] [INFO] [1792507714.692725832] [robot_state_publisher]: got segment camera_depth_optical_frame
+[robot_state_publisher-2] [INFO] [1792507714.692730132] [robot_state_publisher]: got segment camera_link
+[robot_state_publisher-2] [INFO] [1792507714.692733732] [robot_state_publisher]: got segment camera_rgb_frame
+[robot_state_publisher-2] [INFO] [1792507714.692737632] [robot_state_publisher]: got segment camera_rgb_optical_frame
+[robot_state_publisher-2] [INFO] [1792507714.692741232] [robot_state_publisher]: got segment caster_back_left_link
+[robot_state_publisher-2] [INFO] [1792507714.692746432] [robot_state_publisher]: got segment caster_back_right_link
+[robot_state_publisher-2] [INFO] [1792507714.692751332] [robot_state_publisher]: got segment imu_link
+[robot_state_publisher-2] [INFO] [1792507714.692755932] [robot_state_publisher]: got segment wheel_left_link
+[robot_state_publisher-2] [INFO] [1792507714.692759532] [robot_state_publisher]: got segment wheel_right_link
+[component_container_isolated-4] [INFO] [1792507714.901750037] [nav2_container]: Load Library: /opt/ros/humble/lib/libmap_server_core.so
+[component_container_isolated-4] [INFO] [1792507714.922409538] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::CostmapFilterInfoServer>
+[component_container_isolated-4] [INFO] [1792507714.922971838] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::MapSaver>
+[component_container_isolated-4] [INFO] [1792507714.922983638] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::MapServer>
+[component_container_isolated-4] [INFO] [1792507714.922989538] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::MapServer>
+[component_container_isolated-4] [INFO] [1792507714.954445339] [map_server]: 
+[component_container_isolated-4] 	map_server lifecycle node launched. 
+[component_container_isolated-4] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-4] [INFO] [1792507714.955352539] [map_server]: Creating
+[component_container_isolated-4] [INFO] [1792507714.957391639] [nav2_container]: Load Library: /opt/ros/humble/lib/libcontroller_server_core.so
+[component_container_isolated-4] [INFO] [1792507714.961169739] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_controller::ControllerServer>
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map_server' in container '/nav2_container'
+[component_container_isolated-4] [INFO] [1792507714.961226239] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_controller::ControllerServer>
+[component_container_isolated-4] [INFO] [1792507714.989083639] [controller_server]: 
+[component_container_isolated-4] 	controller_server lifecycle node launched. 
+[component_container_isolated-4] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-4] [INFO] [1792507714.991771639] [controller_server]: Creating controller server
+[component_container_isolated-4] [INFO] [1792507715.037880641] [local_costmap.local_costmap]: 
+[component_container_isolated-4] 	local_costmap lifecycle node launched. 
+[component_container_isolated-4] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-4] [INFO] [1792507715.038799441] [local_costmap.local_costmap]: Creating Costmap
+[component_container_isolated-4] [INFO] [1792507715.044175041] [nav2_container]: Load Library: /opt/ros/humble/lib/libamcl_core.so
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/controller_server' in container '/nav2_container'
+[component_container_isolated-4] [INFO] [1792507715.046184741] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_amcl::AmclNode>
+[component_container_isolated-4] [INFO] [1792507715.046237041] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_amcl::AmclNode>
+[component_container_isolated-4] [INFO] [1792507715.073901842] [amcl]: 
+[component_container_isolated-4] 	amcl lifecycle node launched. 
+[component_container_isolated-4] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-4] [INFO] [1792507715.074191242] [amcl]: Creating
+[component_container_isolated-4] [INFO] [1792507715.084087542] [nav2_container]: Load Library: /opt/ros/humble/lib/libsmoother_server_core.so
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/amcl' in container '/nav2_container'
+[component_container_isolated-4] [INFO] [1792507715.091658242] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_smoother::SmootherServer>
+[component_container_isolated-4] [INFO] [1792507715.091736542] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_smoother::SmootherServer>
+[component_container_isolated-4] [INFO] [1792507715.166302744] [smoother_server]: 
+[component_container_isolated-4] 	smoother_server lifecycle node launched. 
+[component_container_isolated-4] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-4] [INFO] [1792507715.167410744] [smoother_server]: Creating smoother server
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/smoother_server' in container '/nav2_container'
+[component_container_isolated-4] [INFO] [1792507715.168150944] [nav2_container]: Load Library: /opt/ros/humble/lib/libnav2_lifecycle_manager_core.so
+[component_container_isolated-4] [INFO] [1792507715.168965944] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-4] [INFO] [1792507715.169015844] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-4] [INFO] [1792507715.186908645] [lifecycle_manager_localization]: Creating
+[component_container_isolated-4] [INFO] [1792507715.191163145] [nav2_container]: Load Library: /opt/ros/humble/lib/libplanner_server_core.so
+[component_container_isolated-4] [INFO] [1792507715.191447945] [lifecycle_manager_localization]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.194463445] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_planner::PlannerServer>
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/lifecycle_manager_localization' in container '/nav2_container'
+[component_container_isolated-4] [INFO] [1792507715.194517545] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_planner::PlannerServer>
+[component_container_isolated-4] [INFO] [1792507715.247573546] [lifecycle_manager_localization]: [34m[1mStarting managed nodes bringup...[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.247632846] [lifecycle_manager_localization]: [34m[1mConfiguring map_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.247863146] [map_server]: Configuring
+[component_container_isolated-4] [INFO] [1792507715.247923646] [map_io]: Loading yaml file: /path/to/resilient-amr-astar/docs/experiment_assets/arena.yaml
+[component_container_isolated-4] [INFO] [1792507715.250494647] [map_io]: resolution: 0.05
+[component_container_isolated-4] [INFO] [1792507715.250518547] [map_io]: origin[0]: -5
+[component_container_isolated-4] [INFO] [1792507715.250523047] [map_io]: origin[1]: -5
+[component_container_isolated-4] [INFO] [1792507715.250527347] [map_io]: origin[2]: 0
+[component_container_isolated-4] [INFO] [1792507715.250531547] [map_io]: free_thresh: 0.196
+[component_container_isolated-4] [INFO] [1792507715.250534947] [map_io]: occupied_thresh: 0.65
+[component_container_isolated-4] [INFO] [1792507715.250539347] [map_io]: mode: trinary
+[component_container_isolated-4] [INFO] [1792507715.250543747] [map_io]: negate: 0
+[component_container_isolated-4] [INFO] [1792507715.250762747] [map_io]: Loading image_file: /path/to/resilient-amr-astar/docs/experiment_assets/arena.pgm
+[component_container_isolated-4] [INFO] [1792507715.281738947] [planner_server]: 
+[component_container_isolated-4] 	planner_server lifecycle node launched. 
+[component_container_isolated-4] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-4] [INFO] [1792507715.282817347] [planner_server]: Creating
+[component_container_isolated-4] [INFO] [1792507715.285292347] [map_io]: Read map /path/to/resilient-amr-astar/docs/experiment_assets/arena.pgm: 200 X 200 map @ 0.05 m/cell
+[component_container_isolated-4] [INFO] [1792507715.304869148] [lifecycle_manager_localization]: [34m[1mConfiguring amcl[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.305122648] [amcl]: Configuring
+[component_container_isolated-4] [INFO] [1792507715.305214948] [amcl]: initTransforms
+[component_container_isolated-4] [INFO] [1792507715.333930749] [global_costmap.global_costmap]: 
+[component_container_isolated-4] 	global_costmap lifecycle node launched. 
+[component_container_isolated-4] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-4] [INFO] [1792507715.334228049] [global_costmap.global_costmap]: Creating Costmap
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/planner_server' in container '/nav2_container'
+[component_container_isolated-4] [INFO] [1792507715.348557349] [amcl]: initPubSub
+[component_container_isolated-4] [INFO] [1792507715.349463649] [nav2_container]: Load Library: /opt/ros/humble/lib/libbehavior_server_core.so
+[component_container_isolated-4] [INFO] [1792507715.354518649] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<behavior_server::BehaviorServer>
+[component_container_isolated-4] [INFO] [1792507715.354594249] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<behavior_server::BehaviorServer>
+[component_container_isolated-4] [INFO] [1792507715.362368950] [amcl]: Subscribed to map topic.
+[component_container_isolated-4] [INFO] [1792507715.378485650] [lifecycle_manager_localization]: [34m[1mActivating map_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.378655450] [map_server]: Activating
+[component_container_isolated-4] [INFO] [1792507715.378863650] [amcl]: Received a 200 X 200 map @ 0.050 m/pix
+[component_container_isolated-4] [INFO] [1792507715.378939250] [map_server]: Creating bond (map_server) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507715.393654950] [behavior_server]: 
+[component_container_isolated-4] 	behavior_server lifecycle node launched. 
+[component_container_isolated-4] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/behavior_server' in container '/nav2_container'
+[component_container_isolated-4] [INFO] [1792507715.402254651] [nav2_container]: Load Library: /opt/ros/humble/lib/libbt_navigator_core.so
+[component_container_isolated-4] [INFO] [1792507715.405458551] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_bt_navigator::BtNavigator>
+[component_container_isolated-4] [INFO] [1792507715.405538351] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_bt_navigator::BtNavigator>
+[component_container_isolated-4] [INFO] [1792507715.434205352] [bt_navigator]: 
+[component_container_isolated-4] 	bt_navigator lifecycle node launched. 
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/bt_navigator' in container '/nav2_container'
+[component_container_isolated-4] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-4] [INFO] [1792507715.434284152] [bt_navigator]: Creating
+[component_container_isolated-4] [INFO] [1792507715.439522752] [nav2_container]: Load Library: /opt/ros/humble/lib/libwaypoint_follower_core.so
+[component_container_isolated-4] [INFO] [1792507715.443786452] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_waypoint_follower::WaypointFollower>
+[component_container_isolated-4] [INFO] [1792507715.443826252] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_waypoint_follower::WaypointFollower>
+[spawn_entity.py-3] [INFO] [1792507715.440921852] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-3] [INFO] [1792507715.441434252] [spawn_entity]: Loading entity XML from file /opt/ros/humble/share/turtlebot3_gazebo/models/turtlebot3_waffle/model.sdf
+[spawn_entity.py-3] [INFO] [1792507715.442660752] [spawn_entity]: Waiting for service /spawn_entity, timeout = 30
+[spawn_entity.py-3] [INFO] [1792507715.443584952] [spawn_entity]: Waiting for service /spawn_entity
+[component_container_isolated-4] [INFO] [1792507715.499021053] [lifecycle_manager_localization]: Server map_server connected with bond.
+[component_container_isolated-4] [INFO] [1792507715.499092253] [lifecycle_manager_localization]: [34m[1mActivating amcl[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.499673753] [amcl]: Activating
+[component_container_isolated-4] [INFO] [1792507715.499732153] [amcl]: Creating bond (amcl) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507715.504112853] [waypoint_follower]: 
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/waypoint_follower' in container '/nav2_container'
+[component_container_isolated-4] 	waypoint_follower lifecycle node launched. 
+[component_container_isolated-4] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-4] [INFO] [1792507715.504453853] [waypoint_follower]: Creating
+[component_container_isolated-4] [INFO] [1792507715.510603254] [nav2_container]: Load Library: /opt/ros/humble/lib/libvelocity_smoother_core.so
+[component_container_isolated-4] [INFO] [1792507715.511293154] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_velocity_smoother::VelocitySmoother>
+[component_container_isolated-4] [INFO] [1792507715.511321454] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_velocity_smoother::VelocitySmoother>
+[component_container_isolated-4] [INFO] [1792507715.535690054] [velocity_smoother]: 
+[component_container_isolated-4] 	velocity_smoother lifecycle node launched. 
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/velocity_smoother' in container '/nav2_container'
+[component_container_isolated-4] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-4] [INFO] [1792507715.539073654] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-4] [INFO] [1792507715.539112954] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-4] [INFO] [1792507715.560547655] [lifecycle_manager_navigation]: Creating
+[component_container_isolated-4] [INFO] [1792507715.565430055] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/lifecycle_manager_navigation' in container '/nav2_container'
+[component_container_isolated-4] [INFO] [1792507715.593759656] [lifecycle_manager_navigation]: [34m[1mStarting managed nodes bringup...[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.593848056] [lifecycle_manager_navigation]: [34m[1mConfiguring controller_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.594072656] [controller_server]: Configuring controller interface
+[component_container_isolated-4] [INFO] [1792507715.594480456] [controller_server]: getting goal checker plugins..
+[component_container_isolated-4] [INFO] [1792507715.594967656] [controller_server]: Controller frequency set to 10.0000Hz
+[component_container_isolated-4] [INFO] [1792507715.595038456] [local_costmap.local_costmap]: Configuring
+[component_container_isolated-4] [INFO] [1792507715.604856856] [local_costmap.local_costmap]: Using plugin "obstacle_layer"
+[change_memory-5] [INFO] [1792507715.605253956] [change_memory]: Restored 33 remembered cells
+[component_container_isolated-4] [INFO] [1792507715.608874756] [local_costmap.local_costmap]: Subscribed to Topics: scan
+[component_container_isolated-4] [INFO] [1792507715.609976656] [lifecycle_manager_localization]: Server amcl connected with bond.
+[component_container_isolated-4] [INFO] [1792507715.610077756] [lifecycle_manager_localization]: [34m[1mManaged nodes are active[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.610101356] [lifecycle_manager_localization]: [34m[1mCreating bond timer...[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.621254657] [local_costmap.local_costmap]: Initialized plugin "obstacle_layer"
+[component_container_isolated-4] [INFO] [1792507715.621320957] [local_costmap.local_costmap]: Using plugin "voxel_layer"
+[component_container_isolated-4] [INFO] [1792507715.623031357] [local_costmap.local_costmap]: Subscribed to Topics: scan
+[component_container_isolated-4] [INFO] [1792507715.638159457] [local_costmap.local_costmap]: Initialized plugin "voxel_layer"
+[component_container_isolated-4] [INFO] [1792507715.638213057] [local_costmap.local_costmap]: Using plugin "inflation_layer"
+[component_container_isolated-4] [INFO] [1792507715.642362857] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[component_container_isolated-4] [INFO] [1792507715.657913058] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[component_container_isolated-4] [INFO] [1792507715.662448358] [controller_server]: Created goal checker : general_goal_checker of type nav2_controller::SimpleGoalChecker
+[component_container_isolated-4] [INFO] [1792507715.663761058] [controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[component_container_isolated-4] [INFO] [1792507715.665878058] [controller_server]: Created controller : FollowPath of type dwb_core::DWBLocalPlanner
+[component_container_isolated-4] [INFO] [1792507715.669178358] [controller_server]: Setting transform_tolerance to 0.200000
+[component_container_isolated-4] [INFO] [1792507715.692456659] [controller_server]: Using critic "RotateToGoal" (dwb_critics::RotateToGoalCritic)
+[component_container_isolated-4] [INFO] [1792507715.694787059] [controller_server]: Critic plugin initialized
+[component_container_isolated-4] [INFO] [1792507715.695246359] [controller_server]: Using critic "Oscillation" (dwb_critics::OscillationCritic)
+[component_container_isolated-4] [INFO] [1792507715.698182259] [controller_server]: Critic plugin initialized
+[component_container_isolated-4] [INFO] [1792507715.698914759] [controller_server]: Using critic "BaseObstacle" (dwb_critics::BaseObstacleCritic)
+[component_container_isolated-4] [INFO] [1792507715.699852859] [controller_server]: Critic plugin initialized
+[component_container_isolated-4] [INFO] [1792507715.700338059] [controller_server]: Using critic "GoalAlign" (dwb_critics::GoalAlignCritic)
+[component_container_isolated-4] [INFO] [1792507715.701640859] [controller_server]: Critic plugin initialized
+[component_container_isolated-4] [INFO] [1792507715.702048759] [controller_server]: Using critic "PathAlign" (dwb_critics::PathAlignCritic)
+[component_container_isolated-4] [INFO] [1792507715.703248959] [controller_server]: Critic plugin initialized
+[component_container_isolated-4] [INFO] [1792507715.703709659] [controller_server]: Using critic "PathDist" (dwb_critics::PathDistCritic)
+[component_container_isolated-4] [INFO] [1792507715.704560259] [controller_server]: Critic plugin initialized
+[component_container_isolated-4] [INFO] [1792507715.704908559] [controller_server]: Using critic "GoalDist" (dwb_critics::GoalDistCritic)
+[component_container_isolated-4] [INFO] [1792507715.705769259] [controller_server]: Critic plugin initialized
+[component_container_isolated-4] [INFO] [1792507715.705802359] [controller_server]: Controller Server has FollowPath  controllers available.
+[component_container_isolated-4] [INFO] [1792507715.722973159] [lifecycle_manager_navigation]: [34m[1mConfiguring smoother_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.723143159] [smoother_server]: Configuring smoother server
+[component_container_isolated-4] [INFO] [1792507715.737427360] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother
+[component_container_isolated-4] [INFO] [1792507715.740905860] [smoother_server]: Smoother Server has simple_smoother  smoothers available.
+[component_container_isolated-4] [INFO] [1792507715.754387560] [lifecycle_manager_navigation]: [34m[1mConfiguring planner_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.754659360] [planner_server]: Configuring
+[component_container_isolated-4] [INFO] [1792507715.754799460] [global_costmap.global_costmap]: Configuring
+[component_container_isolated-4] [INFO] [1792507715.766998161] [global_costmap.global_costmap]: Using plugin "static_layer"
+[component_container_isolated-4] [INFO] [1792507715.770451861] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability
+[component_container_isolated-4] [INFO] [1792507715.772469561] [global_costmap.global_costmap]: Initialized plugin "static_layer"
+[component_container_isolated-4] [INFO] [1792507715.772540661] [global_costmap.global_costmap]: Using plugin "obstacle_layer"
+[component_container_isolated-4] [INFO] [1792507715.776483461] [global_costmap.global_costmap]: Subscribed to Topics: scan
+[component_container_isolated-4] [INFO] [1792507715.785830861] [global_costmap.global_costmap]: Initialized plugin "obstacle_layer"
+[component_container_isolated-4] [INFO] [1792507715.785898861] [global_costmap.global_costmap]: Using plugin "voxel_layer"
+[component_container_isolated-4] [INFO] [1792507715.789464361] [global_costmap.global_costmap]: Subscribed to Topics: scan
+[component_container_isolated-4] [INFO] [1792507715.807919562] [global_costmap.global_costmap]: Initialized plugin "voxel_layer"
+[component_container_isolated-4] [INFO] [1792507715.808021462] [global_costmap.global_costmap]: Using plugin "inflation_layer"
+[component_container_isolated-4] [INFO] [1792507715.812699462] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[component_container_isolated-4] [INFO] [1792507715.835506863] [planner_server]: Created global planner plugin GridBased of type nav2_navfn_planner/NavfnPlanner
+[component_container_isolated-4] [INFO] [1792507715.835595863] [planner_server]: Configuring plugin GridBased of type NavfnPlanner
+[component_container_isolated-4] [INFO] [1792507715.839328963] [planner_server]: Planner Server has GridBased  planners available.
+[component_container_isolated-4] [INFO] [1792507715.842501263] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 200 X 200 at 0.050000 m/pix
+[component_container_isolated-4] [INFO] [1792507715.873461564] [lifecycle_manager_navigation]: [34m[1mConfiguring behavior_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.873783564] [behavior_server]: Configuring
+[component_container_isolated-4] [INFO] [1792507715.888939764] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors/Spin
+[component_container_isolated-4] [INFO] [1792507715.889851764] [behavior_server]: Configuring spin
+[component_container_isolated-4] [INFO] [1792507715.902678464] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp
+[component_container_isolated-4] [INFO] [1792507715.903605464] [behavior_server]: Configuring backup
+[component_container_isolated-4] [INFO] [1792507715.915416365] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading
+[component_container_isolated-4] [INFO] [1792507715.916424065] [behavior_server]: Configuring drive_on_heading
+[component_container_isolated-4] [INFO] [1792507715.933264065] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait
+[component_container_isolated-4] [INFO] [1792507715.934362665] [behavior_server]: Configuring wait
+[component_container_isolated-4] [INFO] [1792507715.950870566] [lifecycle_manager_navigation]: [34m[1mConfiguring bt_navigator[0m[0m
+[component_container_isolated-4] [INFO] [1792507715.951150666] [bt_navigator]: Configuring
+[component_container_isolated-4] [INFO] [1792507716.076436669] [lifecycle_manager_navigation]: [34m[1mConfiguring waypoint_follower[0m[0m
+[component_container_isolated-4] [INFO] [1792507716.076706869] [waypoint_follower]: Configuring
+[component_container_isolated-4] [INFO] [1792507716.092311770] [waypoint_follower]: Created waypoint_task_executor : wait_at_waypoint of type nav2_waypoint_follower::WaitAtWaypoint
+[component_container_isolated-4] [INFO] [1792507716.093621870] [lifecycle_manager_navigation]: [34m[1mConfiguring velocity_smoother[0m[0m
+[component_container_isolated-4] [INFO] [1792507716.093802870] [velocity_smoother]: Configuring velocity smoother
+[component_container_isolated-4] [INFO] [1792507716.104171470] [lifecycle_manager_navigation]: [34m[1mActivating controller_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507716.104451870] [controller_server]: Activating
+[component_container_isolated-4] [INFO] [1792507716.104580670] [local_costmap.local_costmap]: Activating
+[component_container_isolated-4] [INFO] [1792507716.104629570] [local_costmap.local_costmap]: Checking transform
+[component_container_isolated-4] [INFO] [1792507716.104662970] [local_costmap.local_costmap]: Timed out waiting for transform from base_link to odom to become available, tf error: Invalid frame ID "odom" passed to canTransform argument target_frame - frame does not exist
+[component_container_isolated-4] [INFO] [1792507716.604769585] [local_costmap.local_costmap]: Timed out waiting for transform from base_link to odom to become available, tf error: Invalid frame ID "odom" passed to canTransform argument target_frame - frame does not exist
+[spawn_entity.py-3] [INFO] [1792507716.703180088] [spawn_entity]: Calling service /spawn_entity
+[gzserver-1] [INFO] [1792507716.895770094] [turtlebot3_imu]: <initial_orientation_as_reference> is unset, using default value of false to comply with REP 145 (world as orientation reference)
+[spawn_entity.py-3] [INFO] [1792507716.976756897] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [waffle]
+[gzserver-1] [INFO] [1792507717.103276130] [turtlebot3_diff_drive]: Wheel pair 1 separation set to [0.287000m]
+[gzserver-1] [INFO] [1792507717.103386429] [turtlebot3_diff_drive]: Wheel pair 1 diameter set to [0.066000m]
+[gzserver-1] [INFO] [1792507717.105029127] [turtlebot3_diff_drive]: Subscribed to [/cmd_vel]
+[component_container_isolated-4] [INFO] [1792507717.105865726] [local_costmap.local_costmap]: Timed out waiting for transform from base_link to odom to become available, tf error: Invalid frame ID "odom" passed to canTransform argument target_frame - frame does not exist
+[gzserver-1] [INFO] [1792507717.109054321] [turtlebot3_diff_drive]: Advertise odometry on [/odom]
+[gzserver-1] [INFO] [1792507717.114392114] [turtlebot3_diff_drive]: Publishing odom transforms between [odom] and [base_footprint]
+[gzserver-1] [INFO] [1792507717.131623889] [turtlebot3_joint_state]: Going to publish joint [wheel_left_joint]
+[gzserver-1] [INFO] [1792507717.131734389] [turtlebot3_joint_state]: Going to publish joint [wheel_right_joint]
+[INFO] [spawn_entity.py-3]: process has finished cleanly [pid 281146]
+[change_memory-5] [WARN] [1792507717.333716004] [change_memory]: Waiting for map-to-base TF: "map" passed to lookupTransform argument target_frame does not exist. 
+[component_container_isolated-4] [INFO] [1792507717.362504663] [amcl]: createLaserObject
+[component_container_isolated-4] [INFO] [1792507717.604905821] [local_costmap.local_costmap]: start
+[component_container_isolated-4] [INFO] [1792507717.807638334] [controller_server]: Creating bond (controller_server) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507717.913435985] [lifecycle_manager_navigation]: Server controller_server connected with bond.
+[component_container_isolated-4] [INFO] [1792507717.913489384] [lifecycle_manager_navigation]: [34m[1mActivating smoother_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507717.913754984] [smoother_server]: Activating
+[component_container_isolated-4] [INFO] [1792507717.913788084] [smoother_server]: Creating bond (smoother_server) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507718.020776233] [lifecycle_manager_navigation]: Server smoother_server connected with bond.
+[component_container_isolated-4] [INFO] [1792507718.020836033] [lifecycle_manager_navigation]: [34m[1mActivating planner_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507718.021133432] [planner_server]: Activating
+[component_container_isolated-4] [INFO] [1792507718.021178432] [global_costmap.global_costmap]: Activating
+[component_container_isolated-4] [INFO] [1792507718.021212632] [global_costmap.global_costmap]: Checking transform
+[component_container_isolated-4] [INFO] [1792507718.021228332] [global_costmap.global_costmap]: Timed out waiting for transform from base_link to map to become available, tf error: Invalid frame ID "map" passed to canTransform argument target_frame - frame does not exist
+[component_container_isolated-4] [INFO] [1792507718.521394027] [global_costmap.global_costmap]: Timed out waiting for transform from base_link to map to become available, tf error: Invalid frame ID "map" passed to canTransform argument target_frame - frame does not exist
+[component_container_isolated-4] [INFO] [1792507718.693486384] [amcl]: initialPoseReceived
+[component_container_isolated-4] [INFO] [1792507718.693558584] [amcl]: Setting pose (1.600000): -2.071 -0.635 -0.000
+[component_container_isolated-4] [INFO] [1792507718.727258037] [amcl]: initialPoseReceived
+[component_container_isolated-4] [INFO] [1792507718.727317537] [amcl]: Setting pose (1.700000): -2.071 -0.635 -0.000
+[component_container_isolated-4] [INFO] [1792507718.761934188] [amcl]: initialPoseReceived
+[component_container_isolated-4] [INFO] [1792507718.761999688] [amcl]: Setting pose (1.700000): -2.071 -0.635 -0.000
+[component_container_isolated-4] [INFO] [1792507718.798370836] [amcl]: initialPoseReceived
+[component_container_isolated-4] [INFO] [1792507718.798417936] [amcl]: Setting pose (1.700000): -2.071 -0.635 -0.000
+[component_container_isolated-4] [INFO] [1792507718.829958092] [amcl]: initialPoseReceived
+[component_container_isolated-4] [INFO] [1792507718.830021992] [amcl]: Setting pose (1.800000): -2.071 -0.635 -0.000
+[component_container_isolated-4] [INFO] [1792507718.864128444] [amcl]: initialPoseReceived
+[component_container_isolated-4] [INFO] [1792507718.864196543] [amcl]: Setting pose (1.800000): -2.071 -0.635 -0.000
+[component_container_isolated-4] [INFO] [1792507719.021389122] [global_costmap.global_costmap]: Timed out waiting for transform from base_link to map to become available, tf error: Lookup would require extrapolation into the past.  Requested time 1.985000 but the earliest data is at time 2.749000, when looking up transform from frame [base_link] to frame [map]
+[component_container_isolated-4] [INFO] [1792507719.521354018] [global_costmap.global_costmap]: Timed out waiting for transform from base_link to map to become available, tf error: Lookup would require extrapolation into the past.  Requested time 2.495000 but the earliest data is at time 2.749000, when looking up transform from frame [base_link] to frame [map]
+[component_container_isolated-4] [INFO] [1792507720.021538754] [global_costmap.global_costmap]: start
+[component_container_isolated-4] [INFO] [1792507720.922324700] [controller_server]: Received a goal, begin computing control effort.
+[astar_planner-6] [INFO] [1792507720.935875600] [astar_planner]: Published A* path with 78 poses
+[path_follower-7] [INFO] [1792507720.940157500] [path_follower]: Sent path with 78 poses to Nav2
+[component_container_isolated-4] [INFO] [1792507721.023784505] [planner_server]: Activating plugin GridBased of type NavfnPlanner
+[component_container_isolated-4] [INFO] [1792507721.025884405] [planner_server]: Creating bond (planner_server) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507721.133646011] [lifecycle_manager_navigation]: Server planner_server connected with bond.
+[component_container_isolated-4] [INFO] [1792507721.133699411] [lifecycle_manager_navigation]: [34m[1mActivating behavior_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507721.133978911] [behavior_server]: Activating
+[component_container_isolated-4] [INFO] [1792507721.133994811] [behavior_server]: Activating spin
+[component_container_isolated-4] [INFO] [1792507721.134015911] [behavior_server]: Activating backup
+[component_container_isolated-4] [INFO] [1792507721.134024411] [behavior_server]: Activating drive_on_heading
+[component_container_isolated-4] [INFO] [1792507721.134031911] [behavior_server]: Activating wait
+[component_container_isolated-4] [INFO] [1792507721.134041411] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507721.240759316] [lifecycle_manager_navigation]: Server behavior_server connected with bond.
+[component_container_isolated-4] [INFO] [1792507721.240824816] [lifecycle_manager_navigation]: [34m[1mActivating bt_navigator[0m[0m
+[component_container_isolated-4] [INFO] [1792507721.241227716] [bt_navigator]: Activating
+[component_container_isolated-4] [INFO] [1792507721.338975122] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507721.446287727] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.
+[component_container_isolated-4] [INFO] [1792507721.446374927] [lifecycle_manager_navigation]: [34m[1mActivating waypoint_follower[0m[0m
+[component_container_isolated-4] [INFO] [1792507721.446703927] [waypoint_follower]: Activating
+[component_container_isolated-4] [INFO] [1792507721.446736327] [waypoint_follower]: Creating bond (waypoint_follower) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507721.555973533] [lifecycle_manager_navigation]: Server waypoint_follower connected with bond.
+[component_container_isolated-4] [INFO] [1792507721.556026433] [lifecycle_manager_navigation]: [34m[1mActivating velocity_smoother[0m[0m
+[component_container_isolated-4] [INFO] [1792507721.556323233] [velocity_smoother]: Activating
+[component_container_isolated-4] [INFO] [1792507721.556373333] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507721.666451339] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.
+[component_container_isolated-4] [INFO] [1792507721.666525439] [lifecycle_manager_navigation]: [34m[1mManaged nodes are active[0m[0m
+[component_container_isolated-4] [INFO] [1792507721.666563439] [lifecycle_manager_navigation]: [34m[1mCreating bond timer...[0m[0m
+[astar_planner-6] [INFO] [1792507727.027707475] [astar_planner]: Published A* path with 63 poses
+[astar_planner-6] [INFO] [1792507728.619458616] [astar_planner]: Published A* path with 59 poses
+[astar_planner-6] [INFO] [1792507733.835638655] [astar_planner]: Published A* path with 39 poses
+[component_container_isolated-4] [INFO] [1792507733.922685944] [controller_server]: Goal was canceled. Stopping the robot.
+[component_container_isolated-4] [INFO] [1792507733.922806044] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[path_follower-7] [INFO] [1792507733.924871944] [path_follower]: FollowPath finished with status 5
+[path_follower-7] [INFO] [1792507733.926953943] [path_follower]: Sent path with 39 poses to Nav2
+[component_container_isolated-4] [INFO] [1792507733.926997243] [controller_server]: Received a goal, begin computing control effort.
+[astar_planner-6] [INFO] [1792507737.455039309] [astar_planner]: Published A* path with 26 poses
+[component_container_isolated-4] [INFO] [1792507742.331984472] [controller_server]: Reached the goal!
+[path_follower-7] [INFO] [1792507742.333345072] [path_follower]: FollowPath finished with status 4
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [experiment_logger-9]: sending signal 'SIGINT' to process[experiment_logger-9]
+[INFO] [task_manager-8]: sending signal 'SIGINT' to process[task_manager-8]
+[INFO] [path_follower-7]: sending signal 'SIGINT' to process[path_follower-7]
+[INFO] [astar_planner-6]: sending signal 'SIGINT' to process[astar_planner-6]
+[INFO] [change_memory-5]: sending signal 'SIGINT' to process[change_memory-5]
+[INFO] [component_container_isolated-4]: sending signal 'SIGINT' to process[component_container_isolated-4]
+[INFO] [robot_state_publisher-2]: sending signal 'SIGINT' to process[robot_state_publisher-2]
+[INFO] [gzserver-1]: sending signal 'SIGINT' to process[gzserver-1]
+[component_container_isolated-4] [INFO] [1792507742.528599367] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[component_container_isolated-4] [INFO] [1792507742.528759167] [behavior_server]: Running Nav2 LifecycleNode rcl preshutdown (behavior_server)
+[component_container_isolated-4] [INFO] [1792507742.528887267] [behavior_server]: Deactivating
+[component_container_isolated-4] [INFO] [1792507742.528925067] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[ERROR] [robot_state_publisher-2]: process has died [pid 281144, exit code -2, cmd '/opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args -r __node:=robot_state_publisher --params-file /tmp/launch_params_ntf28kne'].
+[robot_state_publisher-2] [INFO] [1792507742.528604067] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[component_container_isolated-4] [INFO] [1792507742.540021467] [behavior_server]: Cleaning up
+[experiment_logger-9] Traceback (most recent call last):
+[experiment_logger-9]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/experiment_logger", line 33, in <module>
+[experiment_logger-9]     sys.exit(load_entry_point('resilient-amr-bringup==0.2.0', 'console_scripts', 'experiment_logger')())
+[experiment_logger-9]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/python3.10/site-packages/resilient_amr_bringup/experiment_logger.py", line 118, in main
+[experiment_logger-9]     node.destroy_node()
+[experiment_logger-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1696, in destroy_node
+[experiment_logger-9]     self.__node.destroy_when_not_in_use()
+[experiment_logger-9] KeyboardInterrupt
+[task_manager-8] Traceback (most recent call last):
+[task_manager-8]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/task_manager", line 33, in <module>
+[task_manager-8]     sys.exit(load_entry_point('resilient-amr-bringup==0.2.0', 'console_scripts', 'task_manager')())
+[task_manager-8]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/python3.10/site-packages/resilient_amr_bringup/task_manager.py", line 168, in main
+[task_manager-8]     rclpy.shutdown()
+[task_manager-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[task_manager-8]     _shutdown(context=context)
+[task_manager-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[task_manager-8]     return context.shutdown()
+[task_manager-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[task_manager-8]     self.__context.shutdown()
+[task_manager-8] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[task_manager-8] Error in sys.excepthook:
+[task_manager-8] Traceback (most recent call last):
+[task_manager-8]   File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 72, in apport_excepthook
+[task_manager-8]     from apport.fileutils import likely_packaged, get_recent_crashes
+[task_manager-8]   File "/usr/lib/python3/dist-packages/apport/__init__.py", line 5, in <module>
+[task_manager-8]     from apport.report import Report
+[task_manager-8]   File "/usr/lib/python3/dist-packages/apport/report.py", line 21, in <module>
+[task_manager-8]     from urllib.request import urlopen
+[task_manager-8]   File "/usr/lib/python3.10/urllib/request.py", line 88, in <module>
+[task_manager-8]     import http.client
+[task_manager-8]   File "/usr/lib/python3.10/http/client.py", line 144, in <module>
+[task_manager-8]     _is_legal_header_name = re.compile(rb'[^:\s][^:\r\n]*').fullmatch
+[task_manager-8]   File "/usr/lib/python3.10/re.py", line 251, in compile
+[task_manager-8]     return _compile(pattern, flags)
+[task_manager-8]   File "/usr/lib/python3.10/re.py", line 303, in _compile
+[task_manager-8]     p = sre_compile.compile(pattern, flags)
+[task_manager-8]   File "/usr/lib/python3.10/sre_compile.py", line 806, in compile
+[task_manager-8]     p.state.groups-1,
+[task_manager-8]   File "/usr/lib/python3.10/sre_parse.py", line 82, in groups
+[task_manager-8]     @property
+[task_manager-8] KeyboardInterrupt
+[task_manager-8] 
+[task_manager-8] Original exception was:
+[task_manager-8] Traceback (most recent call last):
+[task_manager-8]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/task_manager", line 33, in <module>
+[task_manager-8]     sys.exit(load_entry_point('resilient-amr-bringup==0.2.0', 'console_scripts', 'task_manager')())
+[task_manager-8]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/python3.10/site-packages/resilient_amr_bringup/task_manager.py", line 168, in main
+[task_manager-8]     rclpy.shutdown()
+[task_manager-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[task_manager-8]     _shutdown(context=context)
+[task_manager-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[task_manager-8]     return context.shutdown()
+[task_manager-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[task_manager-8]     self.__context.shutdown()
+[task_manager-8] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[change_memory-5] Traceback (most recent call last):
+[change_memory-5]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/change_memory", line 33, in <module>
+[change_memory-5]     sys.exit(load_entry_point('resilient-amr-bringup==0.2.0', 'console_scripts', 'change_memory')())
+[change_memory-5]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/python3.10/site-packages/resilient_amr_bringup/change_memory.py", line 210, in main
+[change_memory-5]     node.destroy_node()
+[change_memory-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1687, in destroy_node
+[change_memory-5]     self.destroy_subscription(self._subscriptions[0])
+[change_memory-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1583, in destroy_subscription
+[change_memory-5]     subscription.destroy()
+[change_memory-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/subscription.py", line 80, in destroy
+[change_memory-5]     self.handle.destroy_when_not_in_use()
+[change_memory-5] KeyboardInterrupt
+[ERROR] [experiment_logger-9]: process has died [pid 281176, exit code -2, cmd '/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/experiment_logger --ros-args -r __node:=experiment_logger --params-file /tmp/resilient-amr-install2/resilient_amr_bringup/share/resilient_amr_bringup/config/nodes.yaml --params-file /tmp/launch_params_w9pz04sy'].
+[astar_planner-6] Traceback (most recent call last):
+[astar_planner-6]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/astar_planner", line 33, in <module>
+[astar_planner-6]     sys.exit(load_entry_point('resilient-amr-bringup==0.2.0', 'console_scripts', 'astar_planner')())
+[astar_planner-6]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/python3.10/site-packages/resilient_amr_bringup/astar_planner.py", line 205, in main
+[astar_planner-6]     rclpy.shutdown()
+[astar_planner-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[astar_planner-6]     _shutdown(context=context)
+[astar_planner-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[astar_planner-6]     return context.shutdown()
+[astar_planner-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[astar_planner-6]     self.__context.shutdown()
+[astar_planner-6] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[astar_planner-6] Error in sys.excepthook:
+[astar_planner-6] Traceback (most recent call last):
+[astar_planner-6]   File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 72, in apport_excepthook
+[astar_planner-6]     from apport.fileutils import likely_packaged, get_recent_crashes
+[astar_planner-6]   File "/usr/lib/python3/dist-packages/apport/__init__.py", line 5, in <module>
+[astar_planner-6]     from apport.report import Report
+[astar_planner-6]   File "/usr/lib/python3/dist-packages/apport/report.py", line 21, in <module>
+[astar_planner-6]     from urllib.request import urlopen
+[astar_planner-6]   File "/usr/lib/python3.10/urllib/request.py", line 1398, in <module>
+[astar_planner-6]     class HTTPCookieProcessor(BaseHandler):
+[astar_planner-6] KeyboardInterrupt
+[astar_planner-6] 
+[astar_planner-6] Original exception was:
+[astar_planner-6] Traceback (most recent call last):
+[astar_planner-6]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/astar_planner", line 33, in <module>
+[astar_planner-6]     sys.exit(load_entry_point('resilient-amr-bringup==0.2.0', 'console_scripts', 'astar_planner')())
+[astar_planner-6]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/python3.10/site-packages/resilient_amr_bringup/astar_planner.py", line 205, in main
+[astar_planner-6]     rclpy.shutdown()
+[astar_planner-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[astar_planner-6]     _shutdown(context=context)
+[astar_planner-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[astar_planner-6]     return context.shutdown()
+[astar_planner-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[astar_planner-6]     self.__context.shutdown()
+[astar_planner-6] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[path_follower-7] Traceback (most recent call last):
+[path_follower-7]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/path_follower", line 33, in <module>
+[path_follower-7]     sys.exit(load_entry_point('resilient-amr-bringup==0.2.0', 'console_scripts', 'path_follower')())
+[path_follower-7]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/python3.10/site-packages/resilient_amr_bringup/path_follower.py", line 152, in main
+[path_follower-7]     rclpy.shutdown()
+[path_follower-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[path_follower-7]     _shutdown(context=context)
+[path_follower-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[path_follower-7]     return context.shutdown()
+[path_follower-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[path_follower-7]     self.__context.shutdown()
+[path_follower-7] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[path_follower-7] Error in sys.excepthook:
+[path_follower-7] Traceback (most recent call last):
+[path_follower-7]   File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 72, in apport_excepthook
+[path_follower-7]     from apport.fileutils import likely_packaged, get_recent_crashes
+[path_follower-7]   File "/usr/lib/python3/dist-packages/apport/__init__.py", line 5, in <module>
+[path_follower-7]     from apport.report import Report
+[path_follower-7]   File "/usr/lib/python3/dist-packages/apport/report.py", line 30, in <module>
+[path_follower-7]     import problem_report
+[path_follower-7]   File "/usr/lib/python3/dist-packages/problem_report.py", line 17, in <module>
+[path_follower-7]     from email.mime.multipart import MIMEMultipart
+[path_follower-7]   File "/usr/lib/python3.10/email/mime/multipart.py", line 9, in <module>
+[path_follower-7]     from email.mime.base import MIMEBase
+[path_follower-7]   File "/usr/lib/python3.10/email/mime/base.py", line 9, in <module>
+[path_follower-7]     import email.policy
+[path_follower-7]   File "/usr/lib/python3.10/email/policy.py", line 9, in <module>
+[path_follower-7]     from email.headerregistry import HeaderRegistry as HeaderRegistry
+[path_follower-7]   File "/usr/lib/python3.10/email/headerregistry.py", line 10, in <module>
+[path_follower-7]     from email import _header_value_parser as parser
+[path_follower-7]   File "/usr/lib/python3.10/email/_header_value_parser.py", line 564, in <module>
+[path_follower-7]     class DisplayName(Phrase):
+[path_follower-7]   File "/usr/lib/python3.10/email/_header_value_parser.py", line 570, in DisplayName
+[path_follower-7]     def display_name(self):
+[path_follower-7] KeyboardInterrupt
+[path_follower-7] 
+[path_follower-7] Original exception was:
+[path_follower-7] Traceback (most recent call last):
+[path_follower-7]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/path_follower", line 33, in <module>
+[path_follower-7]     sys.exit(load_entry_point('resilient-amr-bringup==0.2.0', 'console_scripts', 'path_follower')())
+[path_follower-7]   File "/tmp/resilient-amr-install2/resilient_amr_bringup/lib/python3.10/site-packages/resilient_amr_bringup/path_follower.py", line 152, in main
+[path_follower-7]     rclpy.shutdown()
+[path_follower-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[path_follower-7]     _shutdown(context=context)
+[path_follower-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[path_follower-7]     return context.shutdown()
+[path_follower-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[path_follower-7]     self.__context.shutdown()
+[path_follower-7] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[ERROR] [change_memory-5]: process has died [pid 281150, exit code -2, cmd '/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/change_memory --ros-args -r __node:=change_memory --params-file /tmp/resilient-amr-install2/resilient_amr_bringup/share/resilient_amr_bringup/config/nodes.yaml --params-file /tmp/launch_params_x_qd73ik'].
+[ERROR] [task_manager-8]: process has died [pid 281161, exit code 1, cmd '/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/task_manager --ros-args -r __node:=task_manager --params-file /tmp/resilient-amr-install2/resilient_amr_bringup/share/resilient_amr_bringup/config/nodes.yaml --params-file /tmp/launch_params_s1r64pux'].
+[component_container_isolated-4] [INFO] [1792507742.667509464] [lifecycle_manager_navigation]: [34m[1mHave not received a heartbeat from behavior_server.[0m[0m
+[component_container_isolated-4] [ERROR] [1792507742.682883864] [lifecycle_manager_navigation]: CRITICAL FAILURE: SERVER behavior_server IS DOWN after not receiving a heartbeat for 4000 ms. Shutting down related nodes.
+[component_container_isolated-4] [INFO] [1792507742.682972964] [lifecycle_manager_navigation]: [34m[1mTerminating bond timer...[0m[0m
+[component_container_isolated-4] [INFO] [1792507742.682989364] [lifecycle_manager_navigation]: [34m[1mResetting managed nodes...[0m[0m
+[component_container_isolated-4] [INFO] [1792507742.682997364] [lifecycle_manager_navigation]: [34m[1mDeactivating velocity_smoother[0m[0m
+[component_container_isolated-4] [INFO] [1792507742.683383764] [velocity_smoother]: Deactivating
+[component_container_isolated-4] [INFO] [1792507742.683442464] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507742.710966763] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507742.711029663] [waypoint_follower]: Running Nav2 LifecycleNode rcl preshutdown (waypoint_follower)
+[component_container_isolated-4] [INFO] [1792507742.711062163] [waypoint_follower]: Deactivating
+[component_container_isolated-4] [INFO] [1792507742.711082363] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507742.722078263] [waypoint_follower]: Cleaning up
+[component_container_isolated-4] [INFO] [1792507742.812412761] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507742.812482561] [bt_navigator]: Running Nav2 LifecycleNode rcl preshutdown (bt_navigator)
+[component_container_isolated-4] [INFO] [1792507742.812550361] [bt_navigator]: Deactivating
+[component_container_isolated-4] [INFO] [1792507742.812591761] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507742.823735261] [bt_navigator]: Cleaning up
+[component_container_isolated-4] [INFO] [1792507742.832024761] [lifecycle_manager_navigation]: [34m[1mDeactivating waypoint_follower[0m[0m
+[component_container_isolated-4] [WARN] [1792507742.858819260] [rcl_lifecycle]: No transition matching 4 found for current state unconfigured
+[component_container_isolated-4] [WARN] [1792507742.858845360] [rcl_lifecycle]: No transition matching 4 found for current state unconfigured
+[component_container_isolated-4] [ERROR] [1792507742.858856560] [waypoint_follower]: Unable to start transition 4 from current state unconfigured: Transition is not registered., at ./src/rcl_lifecycle.c:355
+[component_container_isolated-4] [ERROR] [1792507742.859396860] [lifecycle_manager_navigation]: Failed to change state for node: waypoint_follower
+[component_container_isolated-4] [INFO] [1792507742.859435560] [lifecycle_manager_navigation]: [34m[1mDeactivating bt_navigator[0m[0m
+[component_container_isolated-4] [WARN] [1792507742.896345059] [rcl_lifecycle]: No transition matching 4 found for current state cleaningup
+[component_container_isolated-4] [WARN] [1792507742.896382959] [rcl_lifecycle]: No transition matching 4 found for current state cleaningup
+[component_container_isolated-4] [ERROR] [1792507742.896391059] [bt_navigator]: Unable to start transition 4 from current state cleaningup: Transition is not registered., at ./src/rcl_lifecycle.c:355
+[component_container_isolated-4] [ERROR] [1792507742.896923559] [lifecycle_manager_navigation]: Failed to change state for node: bt_navigator
+[component_container_isolated-4] [INFO] [1792507742.896958459] [lifecycle_manager_navigation]: [34m[1mDeactivating behavior_server[0m[0m
+[component_container_isolated-4] [WARN] [1792507742.901523959] [rcl_lifecycle]: No transition matching 4 found for current state unconfigured
+[component_container_isolated-4] [WARN] [1792507742.901550559] [rcl_lifecycle]: No transition matching 4 found for current state unconfigured
+[component_container_isolated-4] [ERROR] [1792507742.901554959] [behavior_server]: Unable to start transition 4 from current state unconfigured: Transition is not registered., at ./src/rcl_lifecycle.c:355
+[component_container_isolated-4] [ERROR] [1792507742.901919959] [lifecycle_manager_navigation]: Failed to change state for node: behavior_server
+[component_container_isolated-4] [INFO] [1792507742.901953059] [lifecycle_manager_navigation]: [34m[1mDeactivating planner_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507742.904356259] [planner_server]: Deactivating
+[component_container_isolated-4] [INFO] [1792507742.904453659] [global_costmap.global_costmap]: Deactivating
+[ERROR] [astar_planner-6]: process has died [pid 281152, exit code 1, cmd '/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/astar_planner --ros-args -r __node:=astar_planner --params-file /tmp/resilient-amr-install2/resilient_amr_bringup/share/resilient_amr_bringup/config/nodes.yaml --params-file /tmp/launch_params_gkk8y6lq'].
+[ERROR] [path_follower-7]: process has died [pid 281154, exit code 1, cmd '/tmp/resilient-amr-install2/resilient_amr_bringup/lib/resilient_amr_bringup/path_follower --ros-args -r __node:=path_follower --params-file /tmp/resilient-amr-install2/resilient_amr_bringup/share/resilient_amr_bringup/config/nodes.yaml --params-file /tmp/launch_params_tybap11l'].
+[component_container_isolated-4] [INFO] [1792507743.007173657] [bt_navigator]: Completed Cleaning up
+[component_container_isolated-4] [INFO] [1792507743.007298057] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507743.007411757] [planner_server]: Running Nav2 LifecycleNode rcl preshutdown (planner_server)
+[component_container_isolated-4] [INFO] [1792507743.007426257] [planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507743.021803556] [planner_server]: Deactivating plugin GridBased of type NavfnPlanner
+[component_container_isolated-4] [INFO] [1792507743.021897056] [planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507743.028063856] [lifecycle_manager_navigation]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager_navigation)
+[component_container_isolated-4] [INFO] [1792507743.032548256] [lifecycle_manager_navigation]: [34m[1mDeactivating smoother_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507743.032961856] [smoother_server]: Deactivating
+[component_container_isolated-4] [INFO] [1792507743.033051256] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.
+[INFO] [gzserver-1]: process has finished cleanly [pid 281142]
+[component_container_isolated-4] [INFO] [1792507743.145857454] [lifecycle_manager_navigation]: [34m[1mDeactivating controller_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507743.146299454] [controller_server]: Deactivating
+[component_container_isolated-4] [INFO] [1792507743.146373754] [local_costmap.local_costmap]: Deactivating
+[component_container_isolated-4] [INFO] [1792507743.205217153] [controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[component_container_isolated-4] [INFO] [1792507743.317423050] [lifecycle_manager_navigation]: [34m[1mCleaning up velocity_smoother[0m[0m
+[component_container_isolated-4] [INFO] [1792507743.317654250] [velocity_smoother]: Cleaning up
+[component_container_isolated-4] [INFO] [1792507743.319706450] [lifecycle_manager_navigation]: [34m[1mCleaning up waypoint_follower[0m[0m
+[component_container_isolated-4] [WARN] [1792507743.319878450] [rcl_lifecycle]: No transition matching 2 found for current state unconfigured
+[component_container_isolated-4] [WARN] [1792507743.319889450] [rcl_lifecycle]: No transition matching 2 found for current state unconfigured
+[component_container_isolated-4] [ERROR] [1792507743.319893250] [waypoint_follower]: Unable to start transition 2 from current state unconfigured: Transition is not registered., at ./src/rcl_lifecycle.c:355
+[component_container_isolated-4] [INFO] [1792507743.320207350] [lifecycle_manager_navigation]: [34m[1mCleaning up bt_navigator[0m[0m
+[component_container_isolated-4] [WARN] [1792507743.330755650] [rcl_lifecycle]: No transition matching 2 found for current state unconfigured
+[component_container_isolated-4] [WARN] [1792507743.330802850] [rcl_lifecycle]: No transition matching 2 found for current state unconfigured
+[component_container_isolated-4] [ERROR] [1792507743.330809550] [bt_navigator]: Unable to start transition 2 from current state unconfigured: Transition is not registered., at ./src/rcl_lifecycle.c:355
+[component_container_isolated-4] [INFO] [1792507743.331104950] [lifecycle_manager_navigation]: [34m[1mCleaning up behavior_server[0m[0m
+[component_container_isolated-4] [WARN] [1792507743.331229050] [rcl_lifecycle]: No transition matching 2 found for current state unconfigured
+[component_container_isolated-4] [WARN] [1792507743.331238950] [rcl_lifecycle]: No transition matching 2 found for current state unconfigured
+[component_container_isolated-4] [ERROR] [1792507743.331242550] [behavior_server]: Unable to start transition 2 from current state unconfigured: Transition is not registered., at ./src/rcl_lifecycle.c:355
+[component_container_isolated-4] [INFO] [1792507743.331482850] [lifecycle_manager_navigation]: [34m[1mCleaning up planner_server[0m[0m
+[component_container_isolated-4] [INFO] [1792507743.331630750] [planner_server]: Cleaning up
+[component_container_isolated-4] [INFO] [1792507743.342425750] [global_costmap.global_costmap]: Cleaning up
+[ERROR] [component_container_isolated-4]: process[component_container_isolated-4] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[INFO] [component_container_isolated-4]: sending signal 'SIGTERM' to process[component_container_isolated-4]
+[ERROR] [component_container_isolated-4]: process[component_container_isolated-4] failed to terminate '10.0' seconds after receiving 'SIGTERM', escalating to 'SIGKILL'
+[INFO] [component_container_isolated-4]: sending signal 'SIGKILL' to process[component_container_isolated-4]
+[ERROR] [component_container_isolated-4]: process has died [pid 281148, exit code -9, cmd '/opt/ros/humble/lib/rclcpp_components/component_container_isolated --ros-args --log-level info --ros-args -r __node:=nav2_container --params-file /tmp/launch_params_w4o2ylbf --params-file /tmp/launch_params_4te42mo9 -r /tf:=tf -r /tf_static:=tf_static'].

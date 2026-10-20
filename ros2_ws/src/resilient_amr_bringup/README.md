@@ -1,17 +1,19 @@
 # Gazebo 시뮬레이션 실행
 
-대상은 ROS 2 Humble과 TurtleBot3 Gazebo/Nav2가 설치된 Ubuntu VM입니다. Gazebo Classic용 TurtleBot3 `turtlebot3_world`와 패키지에 설치된 기본 world map을 사용합니다. 모델 기본값은 `waffle`입니다.
+대상 실행 환경은 ROS 2 Humble과 TurtleBot3 Gazebo/Nav2가 설치된 Ubuntu 22.04 WSL2입니다. Gazebo Classic용 TurtleBot3 `turtlebot3_world`와 패키지의 기본 world/map을 사용하며 모델은 `waffle`입니다. 이 프로젝트는 headless 통합 실행으로 검증했습니다. GUI RViz/Gazebo 렌더링은 검증 범위에 포함되지 않습니다.
+
+반복 시험 설계, 결과, 실패와 신뢰구간은 [검증 보고서](../../../docs/VALIDATION_REPORT_2026-10-20.md), 반복 규칙은 [실험 프로토콜](../../../docs/EXPERIMENT_PROTOCOL.md)를 참고하세요. ROS 통신과 자체 A* FollowPath 주행, 기억 저장·재시작 복원·제거를 확인했지만 지속 장애물 조건의 재계획 감소 가설은 통계적으로 입증되지 않았고 일부 주행은 Nav2 progress 검사에서 중단됐습니다.
 
 ## 빌드
 
-저장소를 VM으로 clone하거나 공유 폴더에서 접근한 뒤:
+저장소를 Ubuntu 22.04 WSL2에서 clone하거나 접근한 뒤:
 
 ```bash
 cd resilient-amr-astar/ros2_ws
 source /opt/ros/humble/setup.bash
 export TURTLEBOT3_MODEL=waffle
 rosdep install --from-paths src --ignore-src -r -y
-colcon build --symlink-install
+colcon build
 source install/setup.bash
 ```
 
@@ -120,7 +122,7 @@ ros2 launch resilient_amr_bringup sim.launch.py memory_enabled:=true experiment_
 - 선반 작업 FSM과 ArUco ID topic은 코드상 연결되어 있습니다. 다만 기본 launch에서는 카메라 detector가 꺼져 있고, 월드의 카메라 토픽·TF·마커 배치·기준 pose를 설정해야 쓸 수 있습니다. 우선은 수동 목적지 topic으로 A* 이동과 기억 재사용을 확인합니다.
 - 변화 확정 threshold는 초기 개발값입니다. Gazebo scan 주기와 map 해상도에 맞춰 조정하고 실험 로그에 조건을 남겨야 합니다.
 - ArUco 자동 초기화에는 카메라 이미지와 CameraInfo 토픽, map 기준 마커 pose, 올바른 camera-to-base TF가 필요합니다. 기본 TurtleBot3 world에 기준 마커가 포함된다고 가정하지 않습니다.
-- A* 셀 장애물 여유 폭은 기본 5 cells (0.05 m/cell 지도에서 약 0.25 m)입니다. map 해상도나 TurtleBot3 footprint가 다르면 조정합니다.
+- A* 셀 장애물 여유 폭은 11 cells (0.05 m/cell 지도에서 약 0.55 m)입니다. Nav2 전역 costmap의 0.55 m inflation과 맞춰 경로가 controller 안전 여유보다 장애물에 가까이 붙지 않도록 합니다. map 해상도나 TurtleBot3 footprint가 다르면 조정합니다.
 - Nav2 controller의 로컬 costmap/충돌 안전 기능은 활성화 상태로 두고, 현재 A* 구현은 point-cell 경로라 footprint/inflation 및 동적 장애물 조건을 Gazebo에서 확인해야 합니다.
-- Gazebo VM은 GUI가 보이도록 3D acceleration/renderer 설정이 필요할 수 있습니다. VM 설정에 따라 `LIBGL_ALWAYS_SOFTWARE=1`을 터미널에서 설정해야 할 수 있습니다.
+- 이번 반복 검증은 headless로 수행했습니다. RViz는 기본 비활성화되어 있으며, GUI 렌더링은 이 결과만으로 동작을 보증하지 않습니다.
 - ROS 2 Humble/Gazebo Classic 밖의 조합은 turtlebot3/Nav2 launch 인자와 패키지 경로를 조정해야 합니다.

@@ -105,7 +105,9 @@ class ChangeMemoryNode(Node):
         target_frame = self.get_parameter("map_frame").value
         sensor_frame = scan.header.frame_id or self.get_parameter("base_frame").value
         try:
-            tf = self.tf_buffer.lookup_transform(target_frame, sensor_frame, scan.header.stamp)
+            # Gazebo Classic may publish scans just ahead of the latest TF on WSL. Use
+            # the newest transform so valid scans are not dropped on small clock skew.
+            tf = self.tf_buffer.lookup_transform(target_frame, sensor_frame, rclpy.time.Time())
         except TransformException as exc:
             self.get_logger().warning(f"Waiting for map-to-base TF: {exc}", throttle_duration_sec=5.0)
             return

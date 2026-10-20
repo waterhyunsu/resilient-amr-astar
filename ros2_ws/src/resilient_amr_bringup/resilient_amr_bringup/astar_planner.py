@@ -7,6 +7,7 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile, DurabilityPolicy, ReliabilityPolicy
 from std_msgs.msg import Int32MultiArray
 from tf2_ros import Buffer, TransformException, TransformListener
+from collections import deque
 
 from resilient_amr.astar import AStarPlanner
 from .map_utils import cell_to_world, inflate_cells, occupancy_to_grid, world_to_cell
@@ -58,8 +59,12 @@ class AStarPlannerNode(Node):
                    if 0 <= index < width * height}
         if updated != self.remembered:
             added = updated - self.remembered
+            removed = self.remembered - updated
             self.remembered = updated
-            if self.last_goal is not None and self._changes_block_path(added):
+            # Replan for either transition only when it changes the current
+            # route. Unrelated memory churn must not cancel a valid Nav2 goal.
+            if self.last_goal is not None and (self._changes_block_path(added)
+                                               or self._changes_block_path(removed)):
                 self.plan_to(self.last_goal)
 
     def on_observed(self, msg):
@@ -110,11 +115,31 @@ class AStarPlannerNode(Node):
         end = world_to_cell(map_msg.info, goal.pose.position.x, goal.pose.position.y)
         width, height = map_msg.info.width, map_msg.info.height
         inflation = self.get_parameter("obstacle_inflation_cells").value
-        blocked = inflate_cells(self.remembered | self.observed, width, height, inflation)
-        cells = self.planner.plan(grid, start, end, blocked)
+        remembered_blocked = inflate_cells(self.remembered, width, height, inflation)
+        observed_blocked = inflate_cells(self.observed, width, height, inflation)
+        blocked = remembered_blocked | observed_blocked
+        # A scan obstacle can enter the inflation band around the robot itself
+        # even when the footprint is still clear. Permit the A* search to leave
+        # that one dynamic cell; static-map and confirmed-memory collisions stay
+        # hard failures, while Nav2's local costmap retains its collision safety.
+        escape_cells = self._dynamic_escape_halo(
+            start, observed_blocked | remembered_blocked, self.observed, self.remembered,
+            grid, inflation)
+        allow_dynamic_escape = bool(escape_cells)
+        cells = self.planner.plan(grid, start, end, blocked,
+                                  allow_blocked_start=allow_dynamic_escape,
+                                  escape_cells=escape_cells)
         self.planned_cells = cells
         if not cells:
-            self.get_logger().error(f"No path from {start} to {end}")
+            self.get_logger().error(
+                f"No path from {start} to {end} (static_start={grid.is_static_obstacle(start)}, "
+                f"remembered_start={start in remembered_blocked}, "
+                f"observed_start={start in observed_blocked}, "
+                f"raw_observed_start={start in self.observed}, "
+                f"dynamic_escape_cells={len(escape_cells)}, "
+                f"static_goal={grid.is_static_obstacle(end)}, "
+                f"remembered_goal={end in remembered_blocked}, "
+                f"observed_goal={end in observed_blocked})")
             path = Path()
             path.header.frame_id = frame
             path.header.stamp = self.get_clock().now().to_msg()
@@ -137,6 +162,35 @@ class AStarPlannerNode(Node):
             path.poses.append(pose)
         self.path_pub.publish(path)
         self.get_logger().info(f"Published A* path with {len(path.poses)} poses")
+
+    @staticmethod
+    def _dynamic_escape_halo(start, soft_blocked, raw_observed, raw_remembered, grid, inflation):
+        """Allow egress from a soft inflation halo around observed/remembered cells.
+
+        Raw occupied returns, confirmed memory cells, and static map obstacles remain
+        hard blocks. Only the bounded inflated border may be crossed on egress.
+        """
+        if (start not in soft_blocked or start in raw_observed
+                or start in raw_remembered or grid.is_static_obstacle(start)):
+            return set()
+        limit = max(1, int(inflation) + 1)
+        escaped = {start}
+        queue = deque([(start, 0)])
+        while queue:
+            cell, depth = queue.popleft()
+            if depth >= limit:
+                continue
+            for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1),
+                           (-1, -1), (-1, 1), (1, -1), (1, 1)):
+                neighbor = (cell[0] + dx, cell[1] + dy)
+                if neighbor in escaped or neighbor not in soft_blocked:
+                    continue
+                if (neighbor in raw_observed or neighbor in raw_remembered
+                        or grid.is_static_obstacle(neighbor)):
+                    continue
+                escaped.add(neighbor)
+                queue.append((neighbor, depth + 1))
+        return escaped
 
 
 def main(args=None):
