@@ -1,7 +1,7 @@
-# Controlled Gazebo arena
+# 반복 시험용 Gazebo 경기장
 
-This arena isolates planner and persistent-memory behavior from the static cylinders in the stock TurtleBot3 world. The four perimeter walls are present in both Gazebo and `arena.pgm`; the interior is open. All conditions use this same world, map, Waffle model, Nav2 parameters, and start/goal unless a high-variance block explicitly jitters the test geometry.
+이 경기장은 TurtleBot3 기본 월드의 고정 원기둥 영향을 피하고 경로 계획 및 지속 기억 동작을 따로 비교할 수 있도록 구성했습니다. 네 방향 외곽 벽은 Gazebo와 `arena.pgm` 지도에 동일하게 있으며 내부는 비어 있습니다. 고분산 단계에서 시험 위치를 흔드는 경우를 제외하면 모든 조건에서 동일한 월드, 지도, Waffle 모델, Nav2 파라미터, 시작점과 목표점을 사용합니다.
 
-Default fixed trial: spawn at `(-2, -0.5)`, goal `(2, -0.5)`, and place the 0.45 m test obstacle at `(0, -0.5)`. The square obstacle is on the direct path, while the arena provides room to route around it. This horizontal route replaces the diagonal pilot route, which produced inconsistent goal-approach results in the baseline condition.
+고정 시험의 기본값은 시작점 `(-2, -0.5)`, 목표점 `(2, -0.5)`, 장애물 위치 `(0, -0.5)`입니다. 장애물은 한 변 0.45 m인 정사각형입니다. 장애물은 시작-목표 직선 위에 놓이고 경기장에는 우회 공간이 있습니다. 이 수평 경로는 기준 조건에서 목표 접근 결과가 일정하지 않았던 대각선 파일럿 경로를 대체합니다.
 
-`arena.launch.py` is passed as the `world_launch` argument to the project `sim.launch.py`; `arena.yaml` is passed as `map:=...`. It starts gzserver without gzclient/RViz for repeatable headless trials.
+프로젝트의 `sim.launch.py`에 `world_launch` 인자로 `arena.launch.py`를 전달하고, `map:=...` 인자로 `arena.yaml`을 지정합니다. 반복 가능한 headless 시험을 위해 gzclient와 RViz 없이 gzserver만 시작합니다.

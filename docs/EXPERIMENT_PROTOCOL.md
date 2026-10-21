@@ -1,38 +1,43 @@
-# A/B Simulation Experiment Protocol
+# A/B 시뮬레이션 비교 실험 프로토콜
 
-## Purpose
+## 목적
 
-Compare baseline A (A* with transient LiDAR obstacle handling) against proposal B (the same A* planner and safety behavior plus repeated-observation persistence, map updates, and mission-to-mission reuse). Keep the world, robot, navigation parameters, and controller identical except for the obstacle-information policy.
+기준 방식 A(일시적인 LiDAR 장애물 정보를 사용하는 A*)와 제안 방식 B(동일한 A*와 안전 동작에 반복 관측 기반 지속성 검증, 지도 갱신, 임무 간 재사용을 더한 방식)를 비교합니다. 장애물 정보 처리 정책만 다르게 하고, 월드·로봇·Nav2 파라미터·컨트롤러는 동일하게 유지합니다.
 
-## Conditions and trial counts
+## 조건과 반복 횟수
 
-There are four cells: A-transient, B-transient, A-persistent, and B-persistent. Run each cell in two phases:
+비교 조건은 A-일시적, B-일시적, A-지속적, B-지속적 네 가지입니다. 각 조건은 다음 두 단계에서 수행합니다.
 
-1. **Fixed initial comparison:** start `(-2.0, -0.5)`, goal `(2.0, -0.5)`, obstacle `(0.0, -0.5)`, same event timing; 30 trials per cell (120 total).
-2. **Higher-variation comparison:** vary start x/y by ±0.30/±0.25 m, goal x/y by ±0.30/±0.25 m, obstacle x/y by ±0.35/±0.25 m around the fixed line, obstacle spawn-to-goal delay from 0.5–2.0 s, and transient-obstacle lifetime from 0.5–1.5 s; 30 trials per cell (120 more; 240 planned total).
+1. **고정 조건 초기 비교:** 시작점 `(-2.0, -0.5)`, 목표점 `(2.0, -0.5)`, 장애물 `(0.0, -0.5)`, 이벤트 시점 고정. 조건별 30회(총 120회).
+2. **고분산 비교:** 고정 경로를 기준으로 시작점 x/y를 각각 ±0.30/±0.25 m, 목표점 x/y를 ±0.30/±0.25 m, 장애물 x/y를 ±0.35/±0.25 m 범위에서 변화. 장애물 생성부터 목표 입력까지 지연은 0.5–2.0초, 일시적 장애물 지속 시간은 0.5–1.5초. 조건별 30회(추가 120회, 최초 계획 총 240회).
 
-Use paired trials: for each replicate number and phase, A and B receive the same seed and environmental conditions. Randomize whether A or B runs first within each pair. Cold-start Gazebo and ROS/Nav2 for every mission. Do not use `/reset_world` to recycle trials: the pilot exposed stale local-costmap bounds after resets. All experimental runs share Nav2 `required_movement_radius=0.1 m`; the stock `0.5 m` threshold exceeded the final four-cell A* segment and produced observed `Failed to make progress` aborts at the goal approach. These experiments evaluate reaching a 2D position, not final heading, so both arms also share `yaw_goal_tolerance=pi`. Both overrides are applied equally to A/B, with the generated full Nav2 parameter file retained per run. Persistent trials include observing and saving the obstacle, restarting the full stack, checking restored memory and path use, then running with the obstacle absent to measure verified memory release near the former obstacle location. Transient trials include an obstacle that disappears before persistence confirmation.
+쌍별 비교를 사용합니다. 같은 반복 번호에서는 A와 B에 동일한 seed와 환경 조건을 적용하고, 각 쌍에서 A/B 실행 순서는 무작위화합니다. 매 임무마다 Gazebo와 ROS/Nav2를 완전히 새로 시작합니다. 파일럿에서 `/reset_world` 재사용 후 local costmap 경계가 오래 남는 현상을 확인했으므로 이를 사용하지 않습니다.
 
-The A* dynamic-obstacle inflation is 11 cells (0.55 m) to match the Nav2 global-costmap inflation radius. Earlier diagnostic runs used 5 cells while the controller costmaps used 0.55 m global/1.0 m local inflation; one A run aborted for lack of progress beside the obstacle. The aligned value is applied identically to A/B before the new inferential block.
+모든 시험에서 Nav2 `required_movement_radius=0.1 m`을 함께 적용합니다. 기본값 `0.5 m`는 목적지 접근 중 A* 경로의 마지막 4셀 구간보다 커서 `Failed to make progress` 중단을 일으킨 적이 있습니다. 시험은 최종 방향이 아니라 2D 위치 도달 여부를 평가하므로 두 방식 모두 `yaw_goal_tolerance=pi`를 사용합니다. 두 설정은 A/B에 똑같이 적용하고, 생성된 전체 Nav2 파라미터 파일을 각 반복 자료에 보관합니다. 지속 장애물 시험은 장애물 관측 및 저장, 전체 시스템 재시작, 기억 복원과 경로 반영 확인, 장애물 없는 상태에서 이전 위치 주변 기억 해제 확인 순서로 진행합니다. 일시적 장애물은 기억 확정 전에 사라지는 조건입니다.
 
-## Predefined extension rule
+A* 동적 장애물 팽창은 11셀(0.55 m)로 설정해 Nav2 global costmap 팽창 반경과 맞춥니다. 이전 진단 시험은 5셀을 사용했지만 controller costmap은 global 0.55 m/local 1.0 m 팽창을 사용했고, 장애물 옆을 통과하던 A 시험에서 progress 실패가 한 차례 발생했습니다. 새 분석용 시험부터 팽창값을 두 방식에 동일하게 적용했습니다.
 
-Review precision after each phase has 30 complete paired replicates in every cell. Extend the affected phase/cells to 60 paired replicates (up to 480 runs overall) if either:
+## 사전 정의한 반복 확장 규칙
 
-- the 95% confidence interval for the paired A-minus-B difference in replans per mission has a half-width greater than 0.5 replans; or
-- the 95% confidence interval for the paired difference in mission success rate has a half-width greater than 10 percentage points.
+각 단계에서 모든 조건에 완전한 쌍별 반복 30개가 쌓인 뒤 정밀도를 확인합니다. 다음 기준 중 하나라도 충족하면 해당 조건을 60쌍까지 확장합니다(최대 480회 실행).
 
-Do not extend merely because a p-value is above a threshold. If precision remains inadequate at 60, report the interval and limitation instead of implying a reliable conclusion. Never stop early because a result appears favorable.
+- 임무당 재계획 횟수의 쌍별 A−B 차이에 대한 95% 신뢰구간 반폭이 0.5회를 초과하는 경우
+- 임무 성공률 차이의 95% 신뢰구간 반폭이 10%p를 초과하는 경우
 
-## Measures and reporting
+p값이 기준보다 크다는 이유만으로 반복을 늘리지 않습니다. 60쌍에서도 정밀도가 부족하면 결과와 한계를 그대로 보고하고 신뢰할 만한 결론으로 표현하지 않습니다. 결과가 유리해 보인다는 이유로 조기 종료하지 않습니다.
 
-Primary comparison: replans per mission and mission success rate. Also report exact path-signature changes (as a diagnostic only), route-side switches near the obstacle, mission duration, odometry distance, obstacle-state classification (confusion counts, precision/recall), and time to map/memory update and release. Report each cell's denominator, failures, aborted runs, missing telemetry, mean and standard deviation for continuous/count measures, and 95% confidence intervals. Retain every raw run, including failures; state any exclusions and their reasons. Analyze paired differences by replicate/seed. Record each cold-start session and stage; persistent lifecycle stages within a replicate are linked, and the paired A/B replicate is the independent comparison unit.
+## 측정 항목과 보고 방식
 
-## Current status
+주요 비교 항목은 임무당 재계획 횟수와 임무 성공률입니다. 보조 지표로 경로 서명 변화(진단용), 장애물 근처의 경로 방향 전환, 임무 시간, 오도메트리 이동 거리, 장애물 상태 분류(혼동행렬, 정밀도/재현율), 지도·기억 갱신 및 해제 시간도 기록합니다. 조건별 분모, 실패·중단·누락 계측, 연속/횟수 지표의 평균과 표준편차, 95% 신뢰구간을 보고합니다.
 
-The final fixed and higher-variation blocks are complete. Each transient condition has 30 paired replicates; each persistent condition was extended from 30 to 60 because the predefined precision rule was not met at 30. Persistent extensions used unique seeds 31–60. The total valid dataset is 180 paired A/B replicates (840 cold-start stage runs). The fixed persistent and higher-variation persistent primary replan confidence intervals still exceed the 0.5-replan half-width target at 60, so the authorized extension cap has been reached and those effects remain inconclusive. Do not extend these blocks or claim the persistent-condition hypothesis was established from these data.
+실패를 포함한 모든 원자료를 보존하고, 분석에서 제외한 자료와 이유를 밝힙니다. 쌍별 차이는 반복 번호/seed로 짝지어 분석합니다. 각 완전 재시작 세션과 단계를 기록합니다. 지속 장애물의 단계들은 같은 반복 안에서 연결되며, 통계상 독립 비교 단위는 A/B 쌍입니다.
 
-Combined persistent summaries and raw run records are retained under `docs/validation-data/2026-10-20/`; see `VALIDATION_REPORT_2026-10-20.md` for the interval estimates, stage success counts, failures, and reproduction commands. Two interrupted higher-variation extension attempts are preserved for audit but excluded from inference because one reused seeds and the other inherited a leftover Gazebo process. The completed clean persistent extension is `repeat-high_variance-persistent-20261020T140500Z`.
+## 현재 상태
 
-The earlier pilot and pre-fix batches are also diagnostic-only and excluded from inference. Event-log review led to separating A* replan publications from route-side switches and updating the follower to compare refreshed paths against the remaining active path before replacing a FollowPath goal. These changes and the final trial configuration are documented in the report and retained with the experiment assets. All valid run failures remain in the denominators and raw data.
+고정 조건과 고분산 조건의 최종 실험을 완료했습니다. 각 일시적 장애물 조건은 30쌍이며, 각 지속 장애물 조건은 30쌍에서 사전 정밀도 규칙이 충족되지 않아 60쌍으로 확장했습니다. 추가 반복에는 중복 없는 seed 31–60을 사용했습니다. 유효 자료는 A/B 180쌍이며 지속 장애물 120쌍과 일시적 장애물 60쌍으로 구성됩니다. cold-start 단계 실행은 총 840회입니다.
 
+고정 조건 및 고분산 조건의 지속 장애물 주요 재계획 신뢰구간은 60쌍에서도 반폭 0.5회 기준을 넘었습니다. 허용된 확장 상한에 도달했으므로 추가 반복을 하지 않았으며, 해당 효과는 결론을 내릴 수 없습니다. 이 결과만으로 지속 장애물 가설이 성립했다고 주장하지 않습니다.
+
+합산 결과와 원자료는 `docs/validation-data/2026-10-20/`에 보관했습니다. 신뢰구간, 단계별 성공 수, 실패 및 재현 명령은 `VALIDATION_REPORT_2026-10-20.md`를 참고하세요. 고분산 조건의 확장 시도 두 건은 seed 중복 및 이전 Gazebo 프로세스 잔류로 오염되어 감사 목적으로 보존하되 추론 분석에서는 제외했습니다. 완료된 고분산 지속 장애물 확장 자료는 `repeat-high_variance-persistent-20261020T140500Z`입니다.
+
+초기 파일럿과 수정 전 반복 역시 진단 자료로 보존하며 통계 분석에서는 제외합니다. 로그 검토를 통해 A* 재계획 발행 횟수와 경로 방향 전환을 구분하고, 활성 FollowPath 경로의 남은 구간과 새 경로를 비교해 경로가 실질적으로 달라질 때만 action goal을 교체하도록 follower를 수정했습니다. 수정 및 최종 시험 설정은 검증 보고서와 실험 자료에 기록했습니다. 유효 자료의 실패는 모두 성공률 분모에 포함했습니다.

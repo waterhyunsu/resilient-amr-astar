@@ -1,29 +1,29 @@
-# Repeated experiment summary: repeat-fixed-20261020T062630Z
+# 반복 실험 요약: repeat-fixed-20261020T062630Z
 
-Complete paired replicates in manifest: 2
+manifest의 완료된 A/B 쌍: 2
 
-Success intervals use Wilson 95% CIs. Paired mean-difference intervals use 10,000 bootstrap resamples.
-Replans are path publications after the initial plan; route switches compare the detour side near the obstacle, ignoring normal path shortening as the robot advances. Differences are B minus A. Failed runs remain in all denominators.
+성공률 신뢰구간은 Wilson 방식의 95% 구간입니다. 쌍별 평균 차이의 신뢰구간은 부트스트랩 10,000회 재표집으로 계산했습니다.
+재계획은 최초 경로 이후 새 경로를 발행한 횟수입니다. 경로 방향 전환은 로봇 이동에 따른 정상적인 경로 단축은 제외하고 장애물 주변에서 우회 방향이 바뀐 경우를 셉니다. 차이는 B−A이며 실패 실행도 모든 분모에 포함했습니다.
 
-| Scenario | Stage | Arm | n | Success | Duration s mean ± SD | Distance m mean ± SD | Replans mean ± SD | Route switches mean ± SD | FollowPath cancels mean ± SD | Memory restored |
+| 조건 | 단계 | 방식 | 표본수 | 성공 | 임무 시간(s) 평균 ± 표준편차 | 이동 거리(m) 평균 ± 표준편차 | 재계획 횟수 평균 ± 표준편차 | 경로 전환 횟수 평균 ± 표준편차 | FollowPath 취소 평균 ± 표준편차 | 기억 복원 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| persistent | after_obstacle_removal | A | 1 | 1/1 (100.0%, 20.7–100.0%) | 20.12 ± 0.00 | 3.99 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
-| persistent | after_obstacle_removal | B | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.14 ± 0.00 | 4.50 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | 1/1 |
-| persistent | after_restart_reuse | A | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.64 ± 0.00 | 4.56 ± 0.00 | 19.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
-| persistent | after_restart_reuse | B | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.66 ± 0.00 | 4.62 ± 0.00 | 24.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | 1/1 |
-| persistent | mission | A | 1 | 1/1 (100.0%, 20.7–100.0%) | 23.04 ± 0.00 | 4.66 ± 0.00 | 11.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
-| persistent | mission | B | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.93 ± 0.00 | 4.62 ± 0.00 | 26.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
-| transient | mission | A | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.03 ± 0.00 | 4.54 ± 0.00 | 1.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
-| transient | mission | B | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.25 ± 0.00 | 4.54 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
+| 지속 장애물 | 장애물 제거 후 | 기준 A | 1 | 1/1 (100.0%, 20.7–100.0%) | 20.12 ± 0.00 | 3.99 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
+| 지속 장애물 | 장애물 제거 후 | 제안 B | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.14 ± 0.00 | 4.50 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | 1/1 |
+| 지속 장애물 | 재시작 후 기억 재사용 | 기준 A | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.64 ± 0.00 | 4.56 ± 0.00 | 19.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
+| 지속 장애물 | 재시작 후 기억 재사용 | 제안 B | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.66 ± 0.00 | 4.62 ± 0.00 | 24.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | 1/1 |
+| 지속 장애물 | 초기 임무 | 기준 A | 1 | 1/1 (100.0%, 20.7–100.0%) | 23.04 ± 0.00 | 4.66 ± 0.00 | 11.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
+| 지속 장애물 | 초기 임무 | 제안 B | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.93 ± 0.00 | 4.62 ± 0.00 | 26.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
+| 일시 장애물 | 초기 임무 | 기준 A | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.03 ± 0.00 | 4.54 ± 0.00 | 1.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
+| 일시 장애물 | 초기 임무 | 제안 B | 1 | 1/1 (100.0%, 20.7–100.0%) | 22.25 ± 0.00 | 4.54 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | 0.00 ± 0.00 | — |
 
-## Paired primary comparisons
+## 쌍별 주요 비교
 
-| Scenario | Stage | n pairs | Replan difference B−A, mean [95% CI] | Success difference B−A [95% bootstrap CI] | Precision rule |
+| 조건 | 단계 | A/B 쌍 수 | 재계획 차이 B−A, 평균 [95% 신뢰구간] | 성공률 차이 B−A [95% 부트스트랩 신뢰구간] | 정밀도 기준 |
 |---|---|---:|---:|---:|---|
-| persistent | after_restart_reuse | 1 | 5.00 [5.00, 5.00] | 0.000 [0.000, 0.000] | minimum 30 paired replicates not reached |
-| transient | mission | 1 | -1.00 [-1.00, -1.00] | 0.000 [0.000, 0.000] | minimum 30 paired replicates not reached |
+| 지속 장애물 | 재시작 후 기억 재사용 | 1 | 5.00 [5.00, 5.00] | 0.000 [0.000, 0.000] | 최소 30쌍에 미달 |
+| 일시 장애물 | 초기 임무 | 1 | -1.00 [-1.00, -1.00] | 0.000 [0.000, 0.000] | 최소 30쌍에 미달 |
 
-Setup-error stages excluded from mission denominators: 0.
-Raw stage records present in this directory: 8. Consult `manifest.jsonl` and `setup_errors.jsonl` for paired completion and setup failures.
+설정 오류 단계 중 임무 성공률 분모에서 제외된 수: 0.
+이 폴더에 저장된 단계별 원자료 수: 8. A/B 쌍 완료 여부와 설정 실패는 `manifest.jsonl`, `setup_errors.jsonl`에서 확인하세요.
 
-This summary does not certify statistical significance. Interpret paired estimates with the stated precision rule and scenario limitations.
+이 요약은 통계적 유의성을 확정하지 않습니다. 쌍별 추정값은 명시된 정밀도 기준과 시나리오의 한계를 고려해 해석해야 합니다.

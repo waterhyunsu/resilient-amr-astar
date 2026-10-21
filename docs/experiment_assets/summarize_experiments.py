@@ -97,11 +97,11 @@ def main():
             paired.setdefault((scenario, primary_stage), []).append((pair["replicate"], a, b))
 
     run_names = ", ".join(run_dir.name for run_dir in args.run_dir)
-    lines = [f"# Repeated experiment summary: {run_names}", "",
-             f"Complete paired replicates in manifest: {len(pairs)}", "",
-             "Success intervals use Wilson 95% CIs. Paired mean-difference intervals use 10,000 bootstrap resamples.",
-             "Replans are path publications after the initial plan; route switches compare the detour side near the obstacle, ignoring normal path shortening as the robot advances. Differences are B minus A. Failed runs remain in all denominators.", ""]
-    lines += ["| Scenario | Stage | Arm | n | Success | Duration s mean ± SD | Distance m mean ± SD | Replans mean ± SD | Route switches mean ± SD | FollowPath cancels mean ± SD | Memory restored |",
+    lines = [f"# 반복 실험 요약: {run_names}", "",
+             f"manifest의 완료된 A/B 쌍: {len(pairs)}", "",
+             "성공률 신뢰구간은 Wilson 방식의 95% 구간입니다. 쌍별 평균 차이의 신뢰구간은 부트스트랩 10,000회 재표집으로 계산했습니다.",
+             "재계획은 최초 경로 이후 새 경로를 발행한 횟수입니다. 경로 방향 전환은 로봇 이동에 따른 정상적인 경로 단축은 제외하고 장애물 주변에서 우회 방향이 바뀐 경우를 셉니다. 차이는 B−A이며 실패 실행도 모든 분모에 포함했습니다.", ""]
+    lines += ["| 조건 | 단계 | 방식 | 표본수 | 성공 | 임무 시간(s) 평균 ± 표준편차 | 이동 거리(m) 평균 ± 표준편차 | 재계획 횟수 평균 ± 표준편차 | 경로 전환 횟수 평균 ± 표준편차 | FollowPath 취소 평균 ± 표준편차 | 기억 복원 |",
               "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for key in sorted(grouped):
         scenario, stage, arm = key
@@ -113,9 +113,12 @@ def main():
         cancels = s["metrics"]["canceled_followpath_count"]
         restored = f"{s['memory_restored_n']}/{s['memory_restored_den']}" if s["memory_restored_den"] else "—"
         lo, hi = s["success_ci"]
-        lines.append(f"| {scenario} | {stage} | {arm} | {s['n']} | {s['successes']}/{s['n']} ({100*s['success_rate']:.1f}%, {100*lo:.1f}–{100*hi:.1f}%) | {d[0]:.2f} ± {d[1]:.2f} | {dist[0]:.2f} ± {dist[1]:.2f} | {repl[0]:.2f} ± {repl[1]:.2f} | {switches[0]:.2f} ± {switches[1]:.2f} | {cancels[0]:.2f} ± {cancels[1]:.2f} | {restored} |")
-    lines += ["", "## Paired primary comparisons", "",
-              "| Scenario | Stage | n pairs | Replan difference B−A, mean [95% CI] | Success difference B−A [95% bootstrap CI] | Precision rule |",
+        scenario_ko = {"persistent": "지속 장애물", "transient": "일시 장애물"}.get(scenario, scenario)
+        stage_ko = {"mission": "초기 임무", "after_restart_reuse": "재시작 후 기억 재사용", "after_obstacle_removal": "장애물 제거 후"}.get(stage, stage)
+        arm_ko = {"A": "기준 A", "B": "제안 B"}.get(arm, arm)
+        lines.append(f"| {scenario_ko} | {stage_ko} | {arm_ko} | {s['n']} | {s['successes']}/{s['n']} ({100*s['success_rate']:.1f}%, {100*lo:.1f}–{100*hi:.1f}%) | {d[0]:.2f} ± {d[1]:.2f} | {dist[0]:.2f} ± {dist[1]:.2f} | {repl[0]:.2f} ± {repl[1]:.2f} | {switches[0]:.2f} ± {switches[1]:.2f} | {cancels[0]:.2f} ± {cancels[1]:.2f} | {restored} |")
+    lines += ["", "## 쌍별 주요 비교", "",
+              "| 조건 | 단계 | A/B 쌍 수 | 재계획 차이 B−A, 평균 [95% 신뢰구간] | 성공률 차이 B−A [95% 부트스트랩 신뢰구간] | 정밀도 기준 |",
               "|---|---|---:|---:|---:|---|"]
     for (scenario, stage), rows in sorted(paired.items()):
         replan_diffs = [b.get("replans_after_initial_path", max(0, b["path_messages"] - 1)) - a.get("replans_after_initial_path", max(0, a["path_messages"] - 1)) for _, a, b in rows]
@@ -128,18 +131,20 @@ def main():
         mean_s = statistics.mean(success_diffs)
         half_s = max(mean_s - slo, shi - mean_s)
         if len(rows) < 30:
-            extend = "minimum 30 paired replicates not reached"
+            extend = "최소 30쌍에 미달"
         elif half_r > 0.5 or half_s > 0.10:
             extend = "extend affected cells to 60"
         else:
-            extend = "precision threshold met"
-        lines.append(f"| {scenario} | {stage} | {len(rows)} | {mean_r:.2f} [{rlo:.2f}, {rhi:.2f}] | {mean_s:.3f} [{slo:.3f}, {shi:.3f}] | {extend} |")
+            extend = "정밀도 기준 충족"
+        scenario_ko = {"persistent": "지속 장애물", "transient": "일시 장애물"}.get(scenario, scenario)
+        stage_ko = {"mission": "초기 임무", "after_restart_reuse": "재시작 후 기억 재사용", "after_obstacle_removal": "장애물 제거 후"}.get(stage, stage)
+        lines.append(f"| {scenario_ko} | {stage_ko} | {len(rows)} | {mean_r:.2f} [{rlo:.2f}, {rhi:.2f}] | {mean_s:.3f} [{slo:.3f}, {shi:.3f}] | {extend} |")
     setup_errors = sum(1 for pair in pairs for stages in pair.get("results", {}).values()
                        for stage in stages if stage.get("record", {}).get("status") == "SETUP_ERROR")
     incomplete = sum(len(list(run_dir.glob("*-1.jsonl"))) + len(list(run_dir.glob("*-2.jsonl"))) + len(list(run_dir.glob("*-3.jsonl"))) for run_dir in args.run_dir)
-    lines += ["", f"Setup-error stages excluded from mission denominators: {setup_errors}.",
-              f"Raw stage records present in this directory: {incomplete}. Consult `manifest.jsonl` and `setup_errors.jsonl` for paired completion and setup failures.",
-              "", "This summary does not certify statistical significance. Interpret paired estimates with the stated precision rule and scenario limitations.", ""]
+    lines += ["", f"설정 오류 단계 중 임무 성공률 분모에서 제외된 수: {setup_errors}.",
+              f"이 폴더에 저장된 단계별 원자료 수: {incomplete}. A/B 쌍 완료 여부와 설정 실패는 `manifest.jsonl`, `setup_errors.jsonl`에서 확인하세요.",
+              "", "이 요약은 통계적 유의성을 확정하지 않습니다. 쌍별 추정값은 명시된 정밀도 기준과 시나리오의 한계를 고려해 해석해야 합니다.", ""]
     output = args.output or (args.run_dir[0] / "summary.md")
     if output.exists():
         raise FileExistsError(f"Refusing to overwrite summary: {output}")
